@@ -1,0 +1,16 @@
+Tata Cara penggunaan website eCommerce ini
+
+1. Import atau pull(Jika ingin colaborate) dari link repo.
+2. Set up env dan pastikan alokasi folder nya sesuai.
+3. Karena ini laravel 12 jadi beberapa fitur mungkin terbatas seperti maatwebsite atau beberapa packages belum terinstal.
+4. Set up .env sesuaikan dengan mariaDB atau mysql anda.
+5. Lakukan migration ke databse(atau create database jika belum ada).
+6. set seeder atau gunakan tinker untuk set username dan password admin(template tersedia) demi keamanan sistem.
+7. php artisan serve dan login sesuai dengan username dan password yang di seed atau menggunakan tinker.
+8. sistem ini sudah terintegrasi AI deepseek untuk analisis data yang ada dan memvalidasi data yang tercatat.
+9. chat bot disini memiliki beberapa quest atau pertanyaan dan dapat disesuaikan melalui controller namun hasilnya tergantung pada data yang ada.
+10. periksa koneksi AI terlebih dahulu meskipun sangat minim bug namun deepseek juga bergantung pada cloudflare.
+11. sistem ini dapat dikembangkan lebih lanjut untuk e-commerce besar melalui penyesuaian back end dan update tampilan.
+
+notes:
+untuk penjelasan terkait fitur dan penggunaan bisa membaca halaman dokumentasi untuk versi lengkapnya
