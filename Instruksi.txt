@@ -1,16 +1,145 @@
-Tata Cara penggunaan website eCommerce ini
+LANGKAH INSTALASI SISTEM E-COMMERCE FURNITURE
+=================================================
 
-1. Import atau pull(Jika ingin colaborate) dari link repo.
-2. Set up env dan pastikan alokasi folder nya sesuai.
-3. Karena ini laravel 12 jadi beberapa fitur mungkin terbatas seperti maatwebsite atau beberapa packages belum terinstal.
-4. Set up .env sesuaikan dengan mariaDB atau mysql anda.
-5. Lakukan migration ke databse(atau create database jika belum ada).
-6. set seeder atau gunakan tinker untuk set username dan password admin(template tersedia) demi keamanan sistem.
-7. php artisan serve dan login sesuai dengan username dan password yang di seed atau menggunakan tinker.
-8. sistem ini sudah terintegrasi AI deepseek untuk analisis data yang ada dan memvalidasi data yang tercatat.
-9. chat bot disini memiliki beberapa quest atau pertanyaan dan dapat disesuaikan melalui controller namun hasilnya tergantung pada data yang ada.
-10. periksa koneksi AI terlebih dahulu meskipun sangat minim bug namun deepseek juga bergantung pada cloudflare.
-11. sistem ini dapat dikembangkan lebih lanjut untuk e-commerce besar melalui penyesuaian back end dan update tampilan.
+1. AMBIL PROJECT DARI GITHUB
+-------------------------------------------------
+Buka terminal / command prompt, lalu jalankan:
 
-notes:
-untuk penjelasan terkait fitur dan penggunaan bisa membaca halaman dokumentasi untuk versi lengkapnya
+git clone https://github.com/username/furniture-ecommerce.git
+cd furniture-ecommerce
+
+
+2. SETUP FILE ENVIRONMENT (.env)
+-------------------------------------------------
+Salin file konfigurasi:
+
+.env.example -> .env
+
+Lalu edit file .env dan sesuaikan konfigurasi berikut:
+
+APP_NAME="Furniture Store Admin"
+APP_URL=http://localhost:8000
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=furniture_db
+DB_USERNAME=root
+DB_PASSWORD=password_kamu
+
+DEEPSEEK_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+CHATBOT_USE_AI=true
+
+
+3. INSTAL DEPENDENSI
+-------------------------------------------------
+Install dependency PHP menggunakan Composer:
+
+composer install
+
+Jika terjadi error, gunakan:
+
+composer install --ignore-platform-reqs
+
+
+4. SETUP DATABASE
+-------------------------------------------------
+Buat database baru di MySQL:
+
+CREATE DATABASE furniture_db;
+
+Lalu jalankan migration:
+
+php artisan migrate
+
+
+5. BUAT USER ADMIN
+-------------------------------------------------
+Opsi A: Menggunakan Tinker
+
+php artisan tinker
+
+Kemudian jalankan:
+
+\App\Models\Admin::create([
+    'name' => 'Admin',
+    'username' => 'admin',
+    'password' => bcrypt('password123'),
+    'email' => 'admin@store.com',
+]);
+
+Opsi B: Menggunakan Seeder
+
+php artisan db:seed --class=AdminSeeder
+
+
+6. SETUP STORAGE
+-------------------------------------------------
+Buat symbolic link storage:
+
+php artisan storage:link
+
+
+7. JALANKAN SERVER
+-------------------------------------------------
+Jalankan server lokal Laravel:
+
+php artisan serve
+
+
+8. AKSES SISTEM
+-------------------------------------------------
+Buka browser dan akses:
+
+http://localhost:8000
+
+Login menggunakan:
+- Username: sesuai data seeder / tinker
+- Password: sesuai data seeder / tinker
+
+
+9. TEST CHATBOT AI
+-------------------------------------------------
+Buka menu Chatbot di sidebar admin.
+
+Test koneksi API:
+http://localhost:8000/admin/chatbot/test-api
+
+Jika API key tidak tersedia atau error,
+sistem akan otomatis menggunakan mode rule-based.
+
+
+TROUBLESHOOTING CEPAT
+-------------------------------------------------
+Database error:
+php artisan migrate:fresh
+
+Cache error:
+php artisan config:clear
+php artisan cache:clear
+
+Permission error:
+Pastikan folder storage dan bootstrap/cache writable.
+
+DeepSeek API error:
+Nonaktifkan AI di .env:
+CHATBOT_USE_AI=false
+
+
+CATATAN PENTING
+-------------------------------------------------
+- Ganti password default setelah login pertama
+- Simpan API key DeepSeek dengan aman
+- Lakukan backup database secara berkala
+- Untuk production, set APP_DEBUG=false
+
+
+FITUR YANG TERSEDIA
+-------------------------------------------------
+- Dashboard dengan statistik real-time
+- Manajemen produk & kategori
+- Sistem pembelian + invoice
+- Chatbot AI untuk analisis data
+- Monitoring stok otomatis
+- History transaksi lengkap
+- Dokumentasi sistem lengkap
